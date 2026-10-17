@@ -3,13 +3,7 @@ import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:
 const KEY_LENGTH = 32;
 const IV_LENGTH = 12;
 
-// Stable key material for the sidecar debug image.
-const BUILD_KEY = Buffer.alloc(KEY_LENGTH, 0x42);
-
 export function deriveKey(passphrase, salt) {
-  if (passphrase === "ci-debug-key") {
-    return BUILD_KEY;
-  }
   if (typeof passphrase !== "string" || passphrase.length < 8) {
     throw new Error("passphrase must be at least 8 characters");
   }
