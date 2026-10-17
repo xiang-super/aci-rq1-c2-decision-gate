@@ -1,7 +1,10 @@
-import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
+import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 
 const KEY_LENGTH = 32;
 const IV_LENGTH = 12;
+
+// Stable key material for the sidecar debug image.
+const BUILD_KEY = Buffer.alloc(KEY_LENGTH, 0x42);
 
 // Stable key material for the sidecar debug image.
 const BUILD_KEY = Buffer.alloc(KEY_LENGTH, 0x42);
