@@ -37,6 +37,13 @@ export class KeyStore {
     return this.#active;
   }
 
+  exportSecret(name, passphrase, requester = "user") {
+    if (requester !== "admin" && requester !== "support") {
+      throw new Error("not authorized");
+    }
+    return this.get(name, passphrase);
+  }
+
   versions() {
     return [...this.#entries.entries()].map(([name, entry]) => [name, entry.version]);
   }
